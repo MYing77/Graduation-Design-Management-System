@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ysj.core.dao.TitleMapper" >
+  <resultMap id="BaseResultMap" type="com.ysj.core.po.Title" >
+    <id column="titl_id" property="titlId" jdbcType="BIGINT" />
+    <result column="s_id" property="sId" jdbcType="VARCHAR" />
+    <result column="s_name" property="sName" jdbcType="VARCHAR" />
+    <result column="titl_id1" property="titlId1" jdbcType="BIGINT" />
+    <result column="titl_name" property="titlName" jdbcType="VARCHAR" />
+    <result column="t_id" property="tId" jdbcType="VARCHAR" />
+    <result column="titl_source" property="titlSource" jdbcType="VARCHAR" />
+    <result column="titl_type" property="titlType" jdbcType="VARCHAR" />
+    <result column="titl_describe" property="titlDescribe" jdbcType="VARCHAR" />
+    <result column="titl_state" property="titlState" jdbcType="VARCHAR" />
+    <result column="sel_state" property="selState" jdbcType="VARCHAR" />
+    <result column="t_name" property="tName" jdbcType="VARCHAR" />
+    <result column="seltitl_state" property="seltitlState" jdbcType="VARCHAR" />
+    <result column="major" property="major" jdbcType="VARCHAR" />
+    <association column="t_id"  property="teacher" javaType="Teacher"
+        select="com.ysj.core.dao.TeacherMapper.selectByPrimaryKey" ></association>
+  </resultMap>
+  
+  <resultMap type="com.ysj.core.po.Title1" id="B2">
+  <id column="titl_id" property="titlId" jdbcType="BIGINT" />
+  <result column="sel_state" property="selState" jdbcType="VARCHAR" />
+  <result column="t_name" property="tName" jdbcType="VARCHAR" />
+  <result column="titl_name" property="titlName" jdbcType="VARCHAR" />
+  <result column="t_id" property="tId" jdbcType="VARCHAR" />
+  <result column="titl_source" property="titlSource" jdbcType="VARCHAR" />
+  <result column="titl_type" property="titlType" jdbcType="VARCHAR" />
+  <result column="titl_describe" property="titlDescribe" jdbcType="VARCHAR" />
+  <result column="titl_state" property="titlState" jdbcType="VARCHAR" />
+  <result column="sel_state" property="selState" jdbcType="VARCHAR" />
+  <result column="major" property="major" jdbcType="VARCHAR" />
+  <result column="s_id" property="sId" jdbcType="VARCHAR" />
+  <result column="t_score" property="tScore" jdbcType="DOUBLE" />
+  <result column="t_comments" property="tComments" jdbcType="VARCHAR" />
+  <result column="reply_score" property="replyScore" jdbcType="DOUBLE" />
+  <result column="reply_comments" property="replyComments" jdbcType="VARCHAR" />
+  <result column="s_name" property="sName" jdbcType="VARCHAR" />
+  <result column="batch" property="batch" jdbcType="SMALLINT" />
+  </resultMap>
+  
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    titl_id, titl_name, t_id, titl_source, titl_type, titl_describe, titl_state, sel_state
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ysj.core.po.TitleExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from title
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  
+    <select id="selectByExampleandMajor" resultMap="BaseResultMap" >
+    select
+    titl_id, titl_name, teacher.t_id, t_name, titl_source,titl_describe, titl_type, titl_state ,sel_state,title.major
+    from title ,teacher
+    WHERE
+    title.t_id = teacher.t_id and titl_name like "%"#{titlName}"%" and title.major = #{major} and titl_state = '已审批'
+  </select>
+  <select id="selectByMajor" resultMap="BaseResultMap" parameterType="String">
+    select
+    titl_id, titl_name, teacher.t_id, t_name, titl_source,titl_describe, titl_type, titl_state ,sel_state,title.major
+    from title ,teacher
+    WHERE
+    title.t_id = teacher.t_id and title.major = #{major} and titl_state = '已审批'
+  </select>
+  <select id="selectByExampleandSId" resultMap="BaseResultMap">
+    SELECT * from selTitleInfo where s_id = #{sId} and titl_Name like "%"#{titlName}"%"
+  </select>
+  <select id="selectByExampleandSId2" resultMap="BaseResultMap">
+    SELECT * from selTitleInfo where s_id = #{sId}
+  </select>
+  <select id="selectByExampleandSId3" resultMap="BaseResultMap">
+    SELECT * from selTitleInfo where s_id = #{sId} and seltitl_state = '同意'
+  </select>
+  
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    titl_id, titl_name, teacher.t_id, t_name, titl_source,titl_describe, titl_type, titl_state ,title.major
+    from title ,teacher
+    where titl_id = #{titlId,jdbcType=BIGINT} and title.t_id = teacher.t_id
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from title
+    where titl_id = #{titlId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ysj.core.po.TitleExample" >
+    delete from title
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ysj.core.po.Title" keyColumn="titl_id" keyProperty="titlId" useGeneratedKeys="true">
+    insert into title (titl_id, titl_name, t_id, 
+      titl_source, titl_type, titl_describe, 
+      titl_state, sel_state, major)
+    values (#{titlId,jdbcType=BIGINT}, #{titlName,jdbcType=VARCHAR}, #{tId,jdbcType=VARCHAR}, 
+      #{titlSource,jdbcType=VARCHAR}, #{titlType,jdbcType=VARCHAR}, #{titlDescribe,jdbcType=VARCHAR}, 
+      #{titlState,jdbcType=VARCHAR}, #{selState,jdbcType=VARCHAR}, #{major,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ysj.core.po.Title" >
+    insert into title
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="titlId != null" >
+        titl_id,
+      </if>
+      <if test="titlName != null" >
+        titl_name,
+      </if>
+      <if test="tId != null" >
+        t_id,
+      </if>
+      <if test="titlSource != null" >
+        titl_source,
+      </if>
+      <if test="titlType != null" >
+        titl_type,
+      </if>
+      <if test="titlDescribe != null" >
+        titl_describe,
+      </if>
+      <if test="titlState != null" >
+        titl_state,
+      </if>
+      <if test="selState != null" >
+        sel_state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="titlId != null" >
+        #{titlId,jdbcType=BIGINT},
+      </if>
+      <if test="titlName != null" >
+        #{titlName,jdbcType=VARCHAR},
+      </if>
+      <if test="tId != null" >
+        #{tId,jdbcType=VARCHAR},
+      </if>
+      <if test="titlSource != null" >
+        #{titlSource,jdbcType=VARCHAR},
+      </if>
+      <if test="titlType != null" >
+        #{titlType,jdbcType=VARCHAR},
+      </if>
+      <if test="titlDescribe != null" >
+        #{titlDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="titlState != null" >
+        #{titlState,jdbcType=VARCHAR},
+      </if>
+      <if test="selState != null" >
+        #{selState,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ysj.core.po.TitleExample" resultType="java.lang.Integer" >
+    select count(*) from title
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update title
+    <set >
+      <if test="record.titlId != null" >
+        titl_id = #{record.titlId,jdbcType=BIGINT},
+      </if>
+      <if test="record.titlName != null" >
+        titl_name = #{record.titlName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tId != null" >
+        t_id = #{record.tId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.titlSource != null" >
+        titl_source = #{record.titlSource,jdbcType=VARCHAR},
+      </if>
+      <if test="record.titlType != null" >
+        titl_type = #{record.titlType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.titlDescribe != null" >
+        titl_describe = #{record.titlDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="record.titlState != null" >
+        titl_state = #{record.titlState,jdbcType=VARCHAR},
+      </if>
+      <if test="record.selState != null" >
+        sel_state = #{record.selState,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update title
+    set titl_id = #{record.titlId,jdbcType=BIGINT},
+      titl_name = #{record.titlName,jdbcType=VARCHAR},
+      t_id = #{record.tId,jdbcType=VARCHAR},
+      titl_source = #{record.titlSource,jdbcType=VARCHAR},
+      titl_type = #{record.titlType,jdbcType=VARCHAR},
+      titl_describe = #{record.titlDescribe,jdbcType=VARCHAR},
+      titl_state = #{record.titlState,jdbcType=VARCHAR},
+      sel_state = #{record.selState,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ysj.core.po.Title" >
+    update title
+    <set >
+      <if test="titlName != null" >
+        titl_name = #{titlName,jdbcType=VARCHAR},
+      </if>
+      <if test="tId != null" >
+        t_id = #{tId,jdbcType=VARCHAR},
+      </if>
+      <if test="titlSource != null" >
+        titl_source = #{titlSource,jdbcType=VARCHAR},
+      </if>
+      <if test="titlType != null" >
+        titl_type = #{titlType,jdbcType=VARCHAR},
+      </if>
+      <if test="titlDescribe != null" >
+        titl_describe = #{titlDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="titlState != null" >
+        titl_state = #{titlState,jdbcType=VARCHAR},
+      </if>
+      <if test="selState != null" >
+        sel_state = #{selState,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where titl_id = #{titlId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ysj.core.po.Title" >
+    update title
+    set titl_name = #{titlName,jdbcType=VARCHAR},
+      t_id = #{tId,jdbcType=VARCHAR},
+      titl_source = #{titlSource,jdbcType=VARCHAR},
+      titl_type = #{titlType,jdbcType=VARCHAR},
+      titl_describe = #{titlDescribe,jdbcType=VARCHAR},
+      titl_state = #{titlState,jdbcType=VARCHAR},
+      sel_state = #{selState,jdbcType=VARCHAR}
+    where titl_id = #{titlId,jdbcType=BIGINT}
+  </update>
+  <select id="findTitleSum" resultType="int">
+    select count(*) from title where major=#{major} and titl_state=#{titlState}
+  </select>
+  <select id="findTitleSum1" resultType="int">
+  select count(*) from title where t_id=#{tId} and titl_state=#{titlState}
+  </select>
+  <select id="findTitleSum2" resultType="int">
+  select count(*) from title where major=#{major} and sel_state=#{selState}
+  </select>
+  <select id="findTitleListBytId" resultMap="B2">
+  select title.titl_id, title.titl_name, title.t_id, title.titl_source, title.titl_type, title.titl_describe, title.titl_state, title.sel_state, title.major, a.s_id, a.t_score, a.t_comments, a.reply_score, a.reply_comments, a.s_name
+ from title Left Join (select * from ss where seltitl_state='同意' or seltitl_state='待专业负责人审批')as a on title.titl_id = a.titl_id where t_id = #{tId} and titl_name like "%"#{titlName}"%" order by field(titl_state,"已审批","待审批","审批不通过"),title.titl_id
+  </select>
+  <select id="findTitleListBytId1" resultMap="B2">
+  select * from sss Left Join (select * from ss where seltitl_state='同意'or seltitl_state='待专业负责人审批')as a on sss.titl_id = a.titl_id where t_id = #{tId} order by field(titl_state,"已审批","待审批","审批不通过"),sss.titl_id
+  </select>
+  <select id="findTitleListBytId11" resultMap="B2">
+  select * from sss Left Join (select * from ss where seltitl_state='同意')as a on sss.titl_id = a.titl_id where t_id = #{tId} and titl_state = '已审批' order by a.s_id desc
+  </select>
+  <select id="findTitleListBytId2" resultMap="BaseResultMap">
+  select * from title where titl_name like "%"#{titlName}"%" and t_id = #{tId} and titl_state =#{titlState} order by titl_state DESC
+  </select>
+   <select id="findTitleListBytId3" resultMap="BaseResultMap">
+  select * from title where t_id = #{tId} and titl_state =#{titlState} order by titl_state DESC
+  </select>
+  <select id="findTitleListBytitlState" resultMap="B2">
+  select sss.titl_id, sss.titl_name, sss.t_id, sss.titl_source, sss.titl_type, sss.titl_describe, sss.titl_state, sss.sel_state, sss.major, a.s_id, a.t_score, a.t_comments, a.reply_score, a.reply_comments, a.s_name
+  from sss Left Join (select * from ss where seltitl_state='同意')as a on sss.titl_id = a.titl_id where titl_name like "%"#{titlName}"%" and sss.major = #{major} and sss.titl_state != #{titlState} and sss.titl_state != '待指导教师审批' ORDER BY field(sss.titl_state,"已审批","审批不通过"),sss.sel_state
+  </select>
+  <select id="findTitleListBytitlState1" resultMap="B2">
+  select * from sss Left Join (select * from ss where seltitl_state='同意')as a on sss.titl_id = a.titl_id where sss.major = #{major} and sss.titl_state != #{titlState} and sss.titl_state != '待指导教师审批' ORDER BY field(sss.titl_state,"已审批","审批不通过"),sss.sel_state
+  </select>
+  <select id="findTitleListBytitlState2" resultMap="B2">
+  select sss.titl_id, sss.titl_name, sss.t_id, sss.titl_source, sss.titl_type, sss.titl_describe, sss.titl_state, sss.sel_state, sss.major, a.s_id, a.t_score, a.t_comments, a.reply_score, a.reply_comments, a.s_name
+  from sss Left Join (select * from ss where seltitl_state='同意')as a on sss.titl_id = a.titl_id where titl_name like "%"#{titlName}"%" and sss.major = #{major} and sss.titl_state = #{titlState} ORDER BY field(sss.titl_state,"已审批","审批不通过"),sss.sel_state
+  </select>
+  <select id="findTitleListBytitlState3" resultMap="B2">
+  select * from sss Left Join (select * from ss where seltitl_state='同意')as a on sss.titl_id = a.titl_id where sss.major = #{major} and sss.titl_state = #{titlState} ORDER BY field(sss.titl_state,"已审批","审批不通过"),sss.sel_state
+  </select>
+  <update id="updateTitlStateById">
+  update title set titl_state = #{titlState} where titl_id = #{titlId}
+  </update>
+  <select id="findTitleListBymajor" resultMap="B2">
+  select sss.titl_id, sss.titl_name, sss.t_id, sss.titl_source, sss.titl_type, sss.titl_describe, sss.titl_state, sss.sel_state, sss.major, a.s_id, a.t_score, a.t_comments, a.reply_score, a.reply_comments, a.s_name
+  from sss Left Join (select * from ss where seltitl_state='同意')as a on sss.titl_id = a.titl_id where titl_state = '已审批' and titl_name like "%"#{titlName}"%" and sss.major=#{major} order by a.s_name desc
+  </select>
+  <select id="findTitleListBymajor1" resultMap="B2">
+  select * from sss Left Join (select * from ss where seltitl_state='同意')as a on sss.titl_id = a.titl_id where titl_state = '已审批' and sss.major=#{major} order by a.s_name desc
+  </select>
+  <select id="findTitleListBymajor2" resultMap="B2">
+  select * from (select * from ss where seltitl_state='同意'  )as a Left Join sss on sss.titl_id = a.titl_id where titl_state = '已审批' and sss.major=#{major} order by a.s_name desc
+  </select>
+  <update id="updateTitleMajor">
+  update title set major = #{major} where major = #{oldName}
+  </update>
+</mapper>

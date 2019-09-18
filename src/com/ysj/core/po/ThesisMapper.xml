@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ysj.core.dao.ThesisMapper" >
+  <resultMap id="BaseResultMap" type="com.ysj.core.po.Thesis" >
+    <id column="thesis_id" property="thesisId" jdbcType="VARCHAR" />
+    <result column="s_id" property="sId" jdbcType="VARCHAR" />
+    <result column="titl_id" property="titlId" jdbcType="BIGINT" />
+    <result column="f_id" property="fId" jdbcType="BIGINT" />
+    <result column="agree" property="agree" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    thesis_id, s_id, titl_id, f_id, agree
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ysj.core.po.ThesisExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from thesis
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from thesis
+    where thesis_id = #{thesisId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from thesis
+    where thesis_id = #{thesisId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ysj.core.po.ThesisExample" >
+    delete from thesis
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ysj.core.po.Thesis" >
+    insert into thesis (thesis_id, s_id, titl_id, 
+      f_id, agree)
+    values (#{thesisId,jdbcType=VARCHAR}, #{sId,jdbcType=VARCHAR}, #{titlId,jdbcType=BIGINT}, 
+      #{fId,jdbcType=BIGINT}, #{agree,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ysj.core.po.Thesis" >
+    insert into thesis
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="thesisId != null" >
+        thesis_id,
+      </if>
+      <if test="sId != null" >
+        s_id,
+      </if>
+      <if test="titlId != null" >
+        titl_id,
+      </if>
+      <if test="fId != null" >
+        f_id,
+      </if>
+      <if test="agree != null" >
+        agree,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="thesisId != null" >
+        #{thesisId,jdbcType=VARCHAR},
+      </if>
+      <if test="sId != null" >
+        #{sId,jdbcType=VARCHAR},
+      </if>
+      <if test="titlId != null" >
+        #{titlId,jdbcType=BIGINT},
+      </if>
+      <if test="fId != null" >
+        #{fId,jdbcType=BIGINT},
+      </if>
+      <if test="agree != null" >
+        #{agree,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ysj.core.po.ThesisExample" resultType="java.lang.Integer" >
+    select count(*) from thesis
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update thesis
+    <set >
+      <if test="record.thesisId != null" >
+        thesis_id = #{record.thesisId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sId != null" >
+        s_id = #{record.sId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.titlId != null" >
+        titl_id = #{record.titlId,jdbcType=BIGINT},
+      </if>
+      <if test="record.fId != null" >
+        f_id = #{record.fId,jdbcType=BIGINT},
+      </if>
+      <if test="record.agree != null" >
+        agree = #{record.agree,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update thesis
+    set thesis_id = #{record.thesisId,jdbcType=VARCHAR},
+      s_id = #{record.sId,jdbcType=VARCHAR},
+      titl_id = #{record.titlId,jdbcType=BIGINT},
+      f_id = #{record.fId,jdbcType=BIGINT},
+      agree = #{record.agree,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ysj.core.po.Thesis" >
+    update thesis
+    <set >
+      <if test="sId != null" >
+        s_id = #{sId,jdbcType=VARCHAR},
+      </if>
+      <if test="titlId != null" >
+        titl_id = #{titlId,jdbcType=BIGINT},
+      </if>
+      <if test="fId != null" >
+        f_id = #{fId,jdbcType=BIGINT},
+      </if>
+      <if test="agree != null" >
+        agree = #{agree,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where thesis_id = #{thesisId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ysj.core.po.Thesis" >
+    update thesis
+    set s_id = #{sId,jdbcType=VARCHAR},
+      titl_id = #{titlId,jdbcType=BIGINT},
+      f_id = #{fId,jdbcType=BIGINT},
+      agree = #{agree,jdbcType=VARCHAR}
+    where thesis_id = #{thesisId,jdbcType=VARCHAR}
+  </update>
+</mapper>

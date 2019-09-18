@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ysj.core.dao.MyfileMapper" >
+  <resultMap id="BaseResultMap" type="com.ysj.core.po.Myfile" >
+    <id column="f_id" property="fId" jdbcType="BIGINT" />
+    <result column="f_name" property="fName" jdbcType="VARCHAR" />
+    <result column="f_path" property="fPath" jdbcType="VARCHAR" />
+    <result column="upload_datetime" property="uploadDatetime" jdbcType="TIMESTAMP" />
+    <result column="f_type" property="fType" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    f_id, f_name, f_path, upload_datetime, f_type
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ysj.core.po.MyfileExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from myfile
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    ORDER BY field(f_type,'任务书','开题报告','中期检查','论文','附件')
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from myfile
+    where f_id = #{fId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from myfile
+    where f_id = #{fId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ysj.core.po.MyfileExample" >
+    delete from myfile
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ysj.core.po.Myfile" >
+    insert into myfile (f_id, f_name, f_path, 
+      upload_datetime, f_type)
+    values (#{fId,jdbcType=BIGINT}, #{fName,jdbcType=VARCHAR}, #{fPath,jdbcType=VARCHAR}, 
+      #{uploadDatetime,jdbcType=TIMESTAMP}, #{fType,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ysj.core.po.Myfile" >
+    insert into myfile
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fId != null" >
+        f_id,
+      </if>
+      <if test="fName != null" >
+        f_name,
+      </if>
+      <if test="fPath != null" >
+        f_path,
+      </if>
+      <if test="uploadDatetime != null" >
+        upload_datetime,
+      </if>
+      <if test="fType != null" >
+        f_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fId != null" >
+        #{fId,jdbcType=BIGINT},
+      </if>
+      <if test="fName != null" >
+        #{fName,jdbcType=VARCHAR},
+      </if>
+      <if test="fPath != null" >
+        #{fPath,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadDatetime != null" >
+        #{uploadDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fType != null" >
+        #{fType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ysj.core.po.MyfileExample" resultType="java.lang.Integer" >
+    select count(*) from myfile
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update myfile
+    <set >
+      <if test="record.fId != null" >
+        f_id = #{record.fId,jdbcType=BIGINT},
+      </if>
+      <if test="record.fName != null" >
+        f_name = #{record.fName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fPath != null" >
+        f_path = #{record.fPath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uploadDatetime != null" >
+        upload_datetime = #{record.uploadDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.fType != null" >
+        f_type = #{record.fType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update myfile
+    set f_id = #{record.fId,jdbcType=BIGINT},
+      f_name = #{record.fName,jdbcType=VARCHAR},
+      f_path = #{record.fPath,jdbcType=VARCHAR},
+      upload_datetime = #{record.uploadDatetime,jdbcType=TIMESTAMP},
+      f_type = #{record.fType,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ysj.core.po.Myfile" >
+    update myfile
+    <set >
+      <if test="fName != null" >
+        f_name = #{fName,jdbcType=VARCHAR},
+      </if>
+      <if test="fPath != null" >
+        f_path = #{fPath,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadDatetime != null" >
+        upload_datetime = #{uploadDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fType != null" >
+        f_type = #{fType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where f_id = #{fId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ysj.core.po.Myfile" >
+    update myfile
+    set f_name = #{fName,jdbcType=VARCHAR},
+      f_path = #{fPath,jdbcType=VARCHAR},
+      upload_datetime = #{uploadDatetime,jdbcType=TIMESTAMP},
+      f_type = #{fType,jdbcType=VARCHAR}
+    where f_id = #{fId,jdbcType=BIGINT}
+  </update>
+</mapper>

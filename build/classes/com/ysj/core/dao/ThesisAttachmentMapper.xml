@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ysj.core.dao.ThesisAttachmentMapper" >
+  <resultMap id="BaseResultMap" type="com.ysj.core.po.ThesisAttachment" >
+    <id column="a_id" property="aId" jdbcType="BIGINT" />
+    <result column="f_id" property="fId" jdbcType="BIGINT" />
+    <result column="s_id" property="sId" jdbcType="VARCHAR" />
+    <result column="s_name" property="sName" jdbcType="VARCHAR" />
+    <result column="c_id" property="cId" jdbcType="BIGINT" />
+    <result column="f_name" property="fName" jdbcType="VARCHAR" />
+    <result column="f_path" property="fPath" jdbcType="VARCHAR" />
+    <result column="upload_datetime" property="uploadDatetime" jdbcType="TIMESTAMP" />
+    <result column="f_type" property="fType" jdbcType="VARCHAR" />
+    <result column="t_id" property="tId" jdbcType="VARCHAR" />
+    <result column="t_name" property="tName" jdbcType="VARCHAR" />
+    <result column="titl_name" property="titlName" jdbcType="VARCHAR" />
+    <result column="seltitl_state" property="seltitlState" jdbcType="VARCHAR" />
+    <result column="major" property="major" jdbcType="VARCHAR" />
+    <result column="batch" property="batch" jdbcType="SMALLINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    a_id, f_id, s_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ysj.core.po.ThesisAttachmentExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from thesis_attachment
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from thesis_attachment
+    where a_id = #{aId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from thesis_attachment
+    where a_id = #{aId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ysj.core.po.ThesisAttachmentExample" >
+    delete from thesis_attachment
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ysj.core.po.ThesisAttachment" >
+    insert into thesis_attachment (a_id, f_id, s_id)
+    values (#{aId,jdbcType=BIGINT}, #{fId,jdbcType=BIGINT}, #{sId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ysj.core.po.ThesisAttachment" >
+    insert into thesis_attachment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="aId != null" >
+        a_id,
+      </if>
+      <if test="fId != null" >
+        f_id,
+      </if>
+      <if test="sId != null" >
+        s_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="aId != null" >
+        #{aId,jdbcType=BIGINT},
+      </if>
+      <if test="fId != null" >
+        #{fId,jdbcType=BIGINT},
+      </if>
+      <if test="sId != null" >
+        #{sId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ysj.core.po.ThesisAttachmentExample" resultType="java.lang.Integer" >
+    select count(*) from thesis_attachment
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update thesis_attachment
+    <set >
+      <if test="record.aId != null" >
+        a_id = #{record.aId,jdbcType=BIGINT},
+      </if>
+      <if test="record.fId != null" >
+        f_id = #{record.fId,jdbcType=BIGINT},
+      </if>
+      <if test="record.sId != null" >
+        s_id = #{record.sId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update thesis_attachment
+    set a_id = #{record.aId,jdbcType=BIGINT},
+      f_id = #{record.fId,jdbcType=BIGINT},
+      s_id = #{record.sId,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ysj.core.po.ThesisAttachment" >
+    update thesis_attachment
+    <set >
+      <if test="fId != null" >
+        f_id = #{fId,jdbcType=BIGINT},
+      </if>
+      <if test="sId != null" >
+        s_id = #{sId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where a_id = #{aId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ysj.core.po.ThesisAttachment" >
+    update thesis_attachment
+    set f_id = #{fId,jdbcType=BIGINT},
+      s_id = #{sId,jdbcType=VARCHAR}
+    where a_id = #{aId,jdbcType=BIGINT}
+  </update>
+  <select id="selectByExampleandSId" resultMap="BaseResultMap">
+      select * from thesisattachmentinfo where s_id = #{sId} and seltitl_state = '同意' and f_name like "%"#{fName}"%"
+  </select>
+  <select id="selectBySId" resultMap="BaseResultMap">
+      select * from thesisattachmentinfo where s_id = #{sId} and seltitl_state = '同意'
+  </select>
+  <select id="findThesisattachmentBysId" resultMap="BaseResultMap">
+  select * from thesisattachmentinfo where s_Id = #{sId} 
+  </select>
+  <select id="findThesisattachmentBytId" resultMap="BaseResultMap">
+  select * from thesisattachmentinfo where t_Id = #{tId} and seltitl_state = '同意'
+  </select>
+  
+  <select id="selectByExampleandTId" resultMap="BaseResultMap">
+      select * from thesisattachmentinfo where t_id = #{tId} and seltitl_state = '同意' and f_name like "%"#{fName}"%"
+  </select>
+  <select id="selectByTId" resultMap="BaseResultMap">
+      select * from thesisattachmentinfo where t_id = #{tId} and seltitl_state = '同意'
+  </select>
+  <select id="findThesisAttachmentListByMajor" resultMap="BaseResultMap">
+  select * from thesisattachmentinfo where f_name like "%"#{fName}"%" and major = #{major}  and seltitl_state = '同意'
+  </select>
+  <select id="findThesisAttachmentListByMajor1" resultMap="BaseResultMap">
+  select * from thesisattachmentinfo where  major = #{major}  and seltitl_state = '同意'
+  </select>
+</mapper>

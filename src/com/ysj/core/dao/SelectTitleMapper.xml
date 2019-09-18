@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ysj.core.dao.SelectTitleMapper" >
+  <resultMap id="BaseResultMap" type="com.ysj.core.po.SelectTitle" >
+    <id column="s_id" property="sId" jdbcType="VARCHAR" />
+    <id column="titl_id" property="titlId" jdbcType="BIGINT" />
+    <result column="t_score" property="tScore" jdbcType="INTEGER" />
+    <result column="t_comments" property="tComments" jdbcType="VARCHAR" />
+    <result column="reply_score" property="replyScore" jdbcType="DOUBLE" />
+    <result column="reply_comments" property="replyComments" jdbcType="VARCHAR" />
+    <result column="seltitl_state" property="seltitlState" jdbcType="VARCHAR" />
+    <result column="titl_name" property="titlName" jdbcType="VARCHAR" />
+    <result column="t_id" property="tId" jdbcType="VARCHAR" />
+    <result column="t_name" property="tName" jdbcType="VARCHAR" />
+    <result column="s_name" property="sName" jdbcType="VARCHAR" />
+    <result column="major" property="major" jdbcType="VARCHAR" />
+    <result column="batch" property="batch" jdbcType="SMALLINT" />
+    <association column="title_id"  property="title" javaType="Title"
+        select="com.ysj.core.dao.TitleMapper.selectByPrimaryKey" ></association>
+  </resultMap>
+  <resultMap id="BaseResultMap2" type="com.ysj.core.po.Title" >
+    <id column="titl_id" property="titlId" jdbcType="BIGINT" />
+    <result column="s_id" property="sId" jdbcType="VARCHAR" />
+    <result column="s_name" property="sName" jdbcType="VARCHAR" />
+    <result column="titl_id1" property="titlId1" jdbcType="BIGINT" />
+    <result column="titl_name" property="titlName" jdbcType="VARCHAR" />
+    <result column="t_id" property="tId" jdbcType="VARCHAR" />
+    <result column="titl_source" property="titlSource" jdbcType="VARCHAR" />
+    <result column="titl_type" property="titlType" jdbcType="VARCHAR" />
+    <result column="titl_describe" property="titlDescribe" jdbcType="VARCHAR" />
+    <result column="titl_state" property="titlState" jdbcType="VARCHAR" />
+    <result column="sel_state" property="selState" jdbcType="VARCHAR" />
+    <result column="t_name" property="tName" jdbcType="VARCHAR" />
+    <result column="seltitl_state" property="seltitlState" jdbcType="VARCHAR" />
+    <result column="major" property="major" jdbcType="VARCHAR" />
+    <association column="t_id"  property="teacher" javaType="Teacher"
+        select="com.ysj.core.dao.TeacherMapper.selectByPrimaryKey" ></association>
+  </resultMap>
+  
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    s_id, titl_id, t_score, reply_score, reply_comments, seltitl_state
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ysj.core.po.SelectTitleExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from select_title
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  
+  <select id="selectByExampleandSId" resultMap="BaseResultMap" >
+    SELECT 
+    title.titl_id , titl_name , seltitl_state , title.t_id ,t_name , titl_source , titl_type , titl_describe , titl_state , sel_state
+    FROM 
+    title,teacher,select_title
+    WHERE title.titl_id = select_title.titl_id and title.t_id = teacher.t_id and title.titl_name like "%"#{titlName}"%" and select_title.s_id = #{sId}
+  </select>
+  <select id="selectBySId" resultMap="BaseResultMap">
+    SELECT 
+    title.titl_id , titl_name , seltitl_state , title.t_id ,t_name , titl_source , titl_type , titl_describe , titl_state , sel_state
+    FROM 
+    title,teacher,select_title
+    WHERE title.titl_id = select_title.titl_id and title.t_id = teacher.t_id and select_title.s_id = #{sId}
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ysj.core.po.SelectTitleKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from select_title
+    where s_id = #{sId,jdbcType=VARCHAR}
+      and titl_id = #{titlId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ysj.core.po.SelectTitleKey" >
+    delete from select_title
+    where s_id = #{sId,jdbcType=VARCHAR}
+      and titl_id = #{titlId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ysj.core.po.SelectTitleExample" >
+    delete from select_title
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ysj.core.po.SelectTitle" >
+    insert into select_title (s_id, titl_id, t_score, 
+      t_comments, reply_score, reply_comments, 
+      seltitl_state)
+    values (#{sId,jdbcType=VARCHAR}, #{titlId,jdbcType=BIGINT}, #{tScore,jdbcType=INTEGER}, 
+      #{tComments,jdbcType=VARCHAR}, #{replyScore,jdbcType=DOUBLE}, #{replyComments,jdbcType=VARCHAR}, 
+      #{seltitlState,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ysj.core.po.SelectTitle" >
+    insert into select_title
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sId != null" >
+        s_id,
+      </if>
+      <if test="titlId != null" >
+        titl_id,
+      </if>
+      <if test="tScore != null" >
+        t_score,
+      </if>
+      <if test="replyScore != null" >
+        reply_score,
+      </if>
+      <if test="replyComments != null" >
+        reply_comments,
+      </if>
+      <if test="seltitlState != null" >
+        seltitl_state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sId != null" >
+        #{sId,jdbcType=VARCHAR},
+      </if>
+      <if test="titlId != null" >
+        #{titlId,jdbcType=BIGINT},
+      </if>
+      <if test="tScore != null" >
+        #{tScore,jdbcType=INTEGER},
+      </if>
+      <if test="replyScore != null" >
+        #{replyScore,jdbcType=DOUBLE},
+      </if>
+      <if test="replyComments != null" >
+        #{replyComments,jdbcType=VARCHAR},
+      </if>
+      <if test="seltitlState != null" >
+        #{seltitlState,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ysj.core.po.SelectTitleExample" resultType="java.lang.Integer" >
+    select count(*) from select_title
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update select_title
+    <set >
+      <if test="record.sId != null" >
+        s_id = #{record.sId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.titlId != null" >
+        titl_id = #{record.titlId,jdbcType=BIGINT},
+      </if>
+      <if test="record.tScore != null" >
+        t_score = #{record.tScore,jdbcType=INTEGER},
+      </if>
+      <if test="record.replyScore != null" >
+        reply_score = #{record.replyScore,jdbcType=DOUBLE},
+      </if>
+      <if test="record.replyComments != null" >
+        reply_comments = #{record.replyComments,jdbcType=VARCHAR},
+      </if>
+      <if test="record.seltitlState != null" >
+        seltitl_state = #{record.seltitlState,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update select_title
+    set s_id = #{record.sId,jdbcType=VARCHAR},
+      titl_id = #{record.titlId,jdbcType=BIGINT},
+      t_score = #{record.tScore,jdbcType=INTEGER},
+      reply_score = #{record.replyScore,jdbcType=DOUBLE},
+      reply_comments = #{record.replyComments,jdbcType=VARCHAR},
+      seltitl_state = #{record.seltitlState,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ysj.core.po.SelectTitle" >
+    update select_title
+    <set >
+      <if test="tScore != null" >
+        t_score = #{tScore,jdbcType=INTEGER},
+      </if>
+      <if test="tComments != null" >
+        t_comments = #{tComments,jdbcType=VARCHAR},
+      </if>
+      <if test="replyScore != null" >
+        reply_score = #{replyScore,jdbcType=DOUBLE},
+      </if>
+      <if test="replyComments != null" >
+        reply_comments = #{replyComments,jdbcType=VARCHAR},
+      </if>
+      <if test="seltitlState != null" >
+        seltitl_state = #{seltitlState,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where s_id = #{sId,jdbcType=VARCHAR}
+      and titl_id = #{titlId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ysj.core.po.SelectTitle" >
+    update select_title
+    set t_score = #{tScore,jdbcType=INTEGER},
+      reply_score = #{replyScore,jdbcType=DOUBLE},
+      reply_comments = #{replyComments,jdbcType=VARCHAR},
+      seltitl_state = #{seltitlState,jdbcType=VARCHAR}
+    where s_id = #{sId,jdbcType=VARCHAR}
+      and titl_id = #{titlId,jdbcType=BIGINT}
+  </update>
+  <select id="findSelectTitle" resultType="int">
+  select count(*) from select_title where s_id = #{sId} and seltitl_state ='同意'
+  </select>
+  <select id="findSelTitleListBysIdAndState" resultMap="BaseResultMap">
+  select * from studentscore where s_id = #{sId} and seltitl_state = #{seltitl_state}
+  </select>
+  <select id="findSelTitleListByState" resultType="int">
+  select count(*) FROM seltitleinfo where major = #{major} and seltitl_state = #{seltitlState}
+  </select>
+  <select id="findSelTitleListByState1" resultType="int">
+  select count(*) FROM seltitleinfo where seltitl_state = #{seltitlState}
+  </select>
+  <select id="findSelTitleListByState2" resultType="int">
+  select count(*) FROM seltitleinfo where t_id=#{tId} and seltitl_state = #{seltitlState}
+  </select>
+  <select id="findSelTitleListByState3" resultMap="BaseResultMap2">
+  select * FROM seltitleinfo where titl_name like "%"#{titlName}"%" and t_id=#{tId} and seltitl_state = #{seltitlState} order by titl_id
+  </select>
+  <select id="findSelTitleListByState4" resultMap="BaseResultMap2">
+  select * FROM seltitleinfo where t_id=#{tId} and seltitl_state = #{seltitlState} order by titl_id
+  </select>
+  <update id="updateSelTitle1">
+  update select_title set seltitl_state = '拒绝' where titl_id = #{titlId} and seltitl_state = #{seltitlState}
+  </update>
+  <select id="findBytitlId" resultMap="BaseResultMap">
+  select * from select_title where titl_id = #{titlId}
+  </select>
+  <select id="findSelTitle" resultType="int">
+  select count(*) FROM select_title where s_id = #{sId} and( seltitl_state = '待同意' or seltitl_state='待专业负责人审批' or seltitl_state = '同意')
+  </select>
+  <update id="updateReplyScore">
+  update select_title
+  set
+  reply_score = #{replyScore} 
+  where
+   s_id=#{sId} and titl_id=#{titlId}
+  </update>
+</mapper>

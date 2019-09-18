@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ysj.core.dao.ScoreProportionMapper" >
+  <resultMap id="BaseResultMap" type="com.ysj.core.po.ScoreProportion" >
+    <id column="proportion_id" property="proportionId" jdbcType="VARCHAR" />
+    <result column="t_score_proportion" property="tScoreProportion" jdbcType="DOUBLE" />
+    <result column="leader_score_proportion" property="leaderScoreProportion" jdbcType="DOUBLE" />
+    <result column="review_score_proportion" property="reviewScoreProportion" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    proportion_id, t_score_proportion, leader_score_proportion, review_score_proportion
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ysj.core.po.ScoreProportionExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from score_proportion
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from score_proportion
+    where proportion_id = #{proportionId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from score_proportion
+    where proportion_id = #{proportionId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ysj.core.po.ScoreProportionExample" >
+    delete from score_proportion
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ysj.core.po.ScoreProportion" >
+    insert into score_proportion (proportion_id, t_score_proportion, leader_score_proportion, 
+      review_score_proportion)
+    values (#{proportionId,jdbcType=VARCHAR}, #{tScoreProportion,jdbcType=DOUBLE}, #{leaderScoreProportion,jdbcType=DOUBLE}, 
+      #{reviewScoreProportion,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ysj.core.po.ScoreProportion" >
+    insert into score_proportion
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="proportionId != null" >
+        proportion_id,
+      </if>
+      <if test="tScoreProportion != null" >
+        t_score_proportion,
+      </if>
+      <if test="leaderScoreProportion != null" >
+        leader_score_proportion,
+      </if>
+      <if test="reviewScoreProportion != null" >
+        review_score_proportion,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="proportionId != null" >
+        #{proportionId,jdbcType=VARCHAR},
+      </if>
+      <if test="tScoreProportion != null" >
+        #{tScoreProportion,jdbcType=DOUBLE},
+      </if>
+      <if test="leaderScoreProportion != null" >
+        #{leaderScoreProportion,jdbcType=DOUBLE},
+      </if>
+      <if test="reviewScoreProportion != null" >
+        #{reviewScoreProportion,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ysj.core.po.ScoreProportionExample" resultType="java.lang.Integer" >
+    select count(*) from score_proportion
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update score_proportion
+    <set >
+      <if test="record.proportionId != null" >
+        proportion_id = #{record.proportionId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tScoreProportion != null" >
+        t_score_proportion = #{record.tScoreProportion,jdbcType=DOUBLE},
+      </if>
+      <if test="record.leaderScoreProportion != null" >
+        leader_score_proportion = #{record.leaderScoreProportion,jdbcType=DOUBLE},
+      </if>
+      <if test="record.reviewScoreProportion != null" >
+        review_score_proportion = #{record.reviewScoreProportion,jdbcType=DOUBLE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update score_proportion
+    set proportion_id = #{record.proportionId,jdbcType=VARCHAR},
+      t_score_proportion = #{record.tScoreProportion,jdbcType=DOUBLE},
+      leader_score_proportion = #{record.leaderScoreProportion,jdbcType=DOUBLE},
+      review_score_proportion = #{record.reviewScoreProportion,jdbcType=DOUBLE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ysj.core.po.ScoreProportion" >
+    update score_proportion
+    <set >
+      <if test="tScoreProportion != null" >
+        t_score_proportion = #{tScoreProportion,jdbcType=DOUBLE},
+      </if>
+      <if test="leaderScoreProportion != null" >
+        leader_score_proportion = #{leaderScoreProportion,jdbcType=DOUBLE},
+      </if>
+      <if test="reviewScoreProportion != null" >
+        review_score_proportion = #{reviewScoreProportion,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where proportion_id = #{proportionId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ysj.core.po.ScoreProportion" >
+    update score_proportion
+    set t_score_proportion = #{tScoreProportion,jdbcType=DOUBLE},
+      leader_score_proportion = #{leaderScoreProportion,jdbcType=DOUBLE},
+      review_score_proportion = #{reviewScoreProportion,jdbcType=DOUBLE}
+    where proportion_id = #{proportionId,jdbcType=VARCHAR}
+  </update>
+</mapper>

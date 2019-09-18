@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ysj.core.dao.ProjBookMapper" >
+  <resultMap id="BaseResultMap" type="com.ysj.core.po.ProjBook" >
+    <id column="p_id" property="pId" jdbcType="BIGINT" />
+    <result column="f_id" property="fId" jdbcType="BIGINT" />
+    <result column="agree" property="agree" jdbcType="VARCHAR" />
+    <result column="s_id" property="sId" jdbcType="VARCHAR" />
+    <result column="s_name" property="sName" jdbcType="VARCHAR" />
+    <result column="c_id" property="cId" jdbcType="BIGINT" />
+    <result column="f_name" property="fName" jdbcType="VARCHAR" />
+    <result column="f_path" property="fPath" jdbcType="VARCHAR" />
+    <result column="upload_datetime" property="uploadDatetime" jdbcType="TIMESTAMP" />
+    <result column="f_type" property="fType" jdbcType="VARCHAR" />
+    <result column="t_id" property="tId" jdbcType="VARCHAR" />
+    <result column="t_name" property="tName" jdbcType="VARCHAR" />
+    <result column="titl_name" property="titlName" jdbcType="VARCHAR" />
+    <result column="seltitl_state" property="seltitlState" jdbcType="VARCHAR" />
+    <result column="major" property="major" jdbcType="VARCHAR" />
+    <result column="batch" property="batch" jdbcType="SMALLINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    p_id, f_id, s_id, agree
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ysj.core.po.ProjBookExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from proj_book
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  
+  <select id="selectByExampleandSId" resultMap="BaseResultMap">
+      select * from projbookinfo where s_id = #{sId} and seltitl_state = '同意' and f_name like "%"#{fName}"%"
+  </select>
+  <select id="selectBySId" resultMap="BaseResultMap">
+      select * from projbookinfo where s_id = #{sId} and seltitl_state = '同意'
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from proj_book
+    where p_id = #{pId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from proj_book
+    where p_id = #{pId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ysj.core.po.ProjBookExample" >
+    delete from proj_book
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ysj.core.po.ProjBook" >
+    insert into proj_book (p_id, f_id, s_id, 
+      agree)
+    values (#{pId,jdbcType=BIGINT}, #{fId,jdbcType=BIGINT}, #{sId,jdbcType=VARCHAR}, 
+      #{agree,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ysj.core.po.ProjBook" >
+    insert into proj_book
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pId != null" >
+        p_id,
+      </if>
+      <if test="fId != null" >
+        f_id,
+      </if>
+      <if test="sId != null" >
+        s_id,
+      </if>
+      <if test="agree != null" >
+        agree,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pId != null" >
+        #{pId,jdbcType=BIGINT},
+      </if>
+      <if test="fId != null" >
+        #{fId,jdbcType=BIGINT},
+      </if>
+      <if test="sId != null" >
+        #{sId,jdbcType=VARCHAR},
+      </if>
+      <if test="agree != null" >
+        #{agree,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ysj.core.po.ProjBookExample" resultType="java.lang.Integer" >
+    select count(*) from proj_book
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update proj_book
+    <set >
+      <if test="record.pId != null" >
+        p_id = #{record.pId,jdbcType=BIGINT},
+      </if>
+      <if test="record.fId != null" >
+        f_id = #{record.fId,jdbcType=BIGINT},
+      </if>
+      <if test="record.sId != null" >
+        s_id = #{record.sId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.agree != null" >
+        agree = #{record.agree,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update proj_book
+    set p_id = #{record.pId,jdbcType=BIGINT},
+      f_id = #{record.fId,jdbcType=BIGINT},
+      s_id = #{record.sId,jdbcType=VARCHAR},
+      agree = #{record.agree,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ysj.core.po.ProjBook" >
+    update proj_book
+    <set >
+      <if test="fId != null" >
+        f_id = #{fId,jdbcType=BIGINT},
+      </if>
+      <if test="sId != null" >
+        s_id = #{sId,jdbcType=VARCHAR},
+      </if>
+      <if test="agree != null" >
+        agree = #{agree,jdbcType=CHAR},
+      </if>
+    </set>
+    where p_id = #{pId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ysj.core.po.ProjBook" >
+    update proj_book
+    set f_id = #{fId,jdbcType=BIGINT},
+      s_id = #{sId,jdbcType=VARCHAR},
+      agree = #{agree,jdbcType=CHAR}
+    where p_id = #{pId,jdbcType=BIGINT}
+  </update>
+  
+  <select id="findProjBookBysId" resultMap="BaseResultMap">
+  select * from projbookinfo where s_Id = #{sId} 
+  </select>
+  <select id="findProjBookBysIdAndAgree" resultMap="BaseResultMap">
+  select * from proj_book where s_Id = #{sId} and agree = #{agree}
+  </select>
+  <select id="findProjBookBytIdAndAgree" resultMap="BaseResultMap">
+  select * from projbookinfo where f_name like "%"#{fName}"%" and t_id = #{tId} and seltitl_state = '同意' and agree != #{agree}  order by agree desc
+  </select>
+   <select id="findProjBookBytIdAndAgree1" resultMap="BaseResultMap">
+  select * from projbookinfo where t_id = #{tId} and seltitl_state = '同意' and agree != #{agree}  order by agree desc
+  </select>
+  <select id="findProjBookBytIdAndAgree2" resultMap="BaseResultMap">
+  select * from projbookinfo where t_id = #{tId} and seltitl_state = '同意' and agree = #{agree}  order by agree desc
+  </select>
+  <select id="findProjBookBytIdAndAgree3" resultMap="BaseResultMap">
+  select * from projbookinfo where t_id = #{tId} and seltitl_state = '同意' and agree = #{agree}  order by agree desc
+  </select>
+  <update id="updateAgreeByfId">
+  update proj_book set agree = #{agree} where f_id = #{fId}
+  </update>
+  <select id="findProjBookByMajorAndAgree" resultMap="BaseResultMap">
+  select * from projbookinfo where f_name like "%"#{fName}"%" and major = #{major} and agree = #{agree} and seltitl_state = '同意'
+  </select>
+  <select id="findProjBookByMajorAndAgree1" resultMap="BaseResultMap">
+  select * from projbookinfo where major = #{major} and agree = #{agree} and seltitl_state = '同意'
+  </select>
+</mapper>

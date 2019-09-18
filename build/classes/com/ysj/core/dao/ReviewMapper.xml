@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ysj.core.dao.ReviewMapper" >
+  <resultMap id="BaseResultMap" type="com.ysj.core.po.Review" >
+    <id column="s_id" property="sId" jdbcType="VARCHAR" />
+    <id column="member_t_id" property="memberTId" jdbcType="VARCHAR" />
+    <result column="review_score" property="reviewScore" jdbcType="INTEGER" />
+    <result column="review_comments" property="reviewComments" jdbcType="VARCHAR" />
+    <result column="reply_id" property="replyId" jdbcType="VARCHAR" />
+    <result column="review_type" property="reviewType" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="B2" type="com.ysj.core.po.Review1" >
+    <id column="s_id" property="sId" jdbcType="VARCHAR" />
+    <id column="member_t_id" property="memberTId" jdbcType="VARCHAR" />
+    <result column="member_t_id2" property="memberTId2" jdbcType="VARCHAR" />
+    <result column="member_t_name" property="memberTName" jdbcType="VARCHAR" />
+    <result column="member_t_name2" property="memberTName2" jdbcType="VARCHAR" />
+    <result column="review_score" property="reviewScore" jdbcType="INTEGER" />
+    <result column="review_score2" property="reviewScore2" jdbcType="VARCHAR" />
+    <result column="review_comments" property="reviewComments" jdbcType="VARCHAR" />
+    <result column="reply_id" property="replyId" jdbcType="VARCHAR" />
+    <result column="review_type" property="reviewType" jdbcType="VARCHAR" />
+    <result column="f_id" property="fId" jdbcType="BIGINT" />
+    <result column="f_Name" property="fName" jdbcType="VARCHAR" />
+    <result column="agree" property="agree" jdbcType="VARCHAR" />
+    <result column="titl_id" property="titlId" jdbcType="BIGINT" />
+    <result column="t_id" property="tId" jdbcType="VARCHAR" />
+    <result column="t_name" property="tName" jdbcType="VARCHAR" />
+    <result column="s_name" property="sName" jdbcType="VARCHAR" />
+    <result column="titl_name" property="titlName" jdbcType="VARCHAR" />
+    <result column="major" property="major" jdbcType="VARCHAR" />
+    <result column="batch" property="batch" jdbcType="SMALLINT" />
+    <result column="reply_leader" property="replyLeader" jdbcType="VARCHAR" />
+    <result column="reply_score2" property="replyScore2" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    s_id, member_t_id, review_score, review_comments, reply_id, review_type
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ysj.core.po.ReviewExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from review
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ysj.core.po.ReviewKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from review
+    where s_id = #{sId,jdbcType=VARCHAR}
+      and member_t_id = #{memberTId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ysj.core.po.ReviewKey" >
+    delete from review
+    where s_id = #{sId,jdbcType=VARCHAR}
+      and member_t_id = #{memberTId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ysj.core.po.ReviewExample" >
+    delete from review
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ysj.core.po.Review" >
+    insert into review (s_id, member_t_id, review_score, 
+      review_comments, reply_id, review_type
+      )
+    values (#{sId,jdbcType=VARCHAR}, #{memberTId,jdbcType=VARCHAR}, #{reviewScore,jdbcType=INTEGER}, 
+      #{reviewComments,jdbcType=VARCHAR}, #{replyId,jdbcType=VARCHAR}, #{reviewType,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ysj.core.po.Review" >
+    insert into review
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sId != null" >
+        s_id,
+      </if>
+      <if test="memberTId != null" >
+        member_t_id,
+      </if>
+      <if test="reviewScore != null" >
+        review_score,
+      </if>
+      <if test="reviewComments != null" >
+        review_comments,
+      </if>
+      <if test="replyId != null" >
+        reply_id,
+      </if>
+      <if test="reviewType != null" >
+        review_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sId != null" >
+        #{sId,jdbcType=VARCHAR},
+      </if>
+      <if test="memberTId != null" >
+        #{memberTId,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewScore != null" >
+        #{reviewScore,jdbcType=INTEGER},
+      </if>
+      <if test="reviewComments != null" >
+        #{reviewComments,jdbcType=VARCHAR},
+      </if>
+      <if test="replyId != null" >
+        #{replyId,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewType != null" >
+        #{reviewType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ysj.core.po.ReviewExample" resultType="java.lang.Integer" >
+    select count(*) from review
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update review
+    <set >
+      <if test="record.sId != null" >
+        s_id = #{record.sId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberTId != null" >
+        member_t_id = #{record.memberTId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reviewScore != null" >
+        review_score = #{record.reviewScore,jdbcType=INTEGER},
+      </if>
+      <if test="record.reviewComments != null" >
+        review_comments = #{record.reviewComments,jdbcType=VARCHAR},
+      </if>
+      <if test="record.replyId != null" >
+        reply_id = #{record.replyId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reviewType != null" >
+        review_type = #{record.reviewType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update review
+    set s_id = #{record.sId,jdbcType=VARCHAR},
+      member_t_id = #{record.memberTId,jdbcType=VARCHAR},
+      review_score = #{record.reviewScore,jdbcType=INTEGER},
+      review_comments = #{record.reviewComments,jdbcType=VARCHAR},
+      reply_id = #{record.replyId,jdbcType=VARCHAR},
+      review_type = #{record.reviewType,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ysj.core.po.Review" >
+    update review
+    <set >
+      <if test="reviewScore != null" >
+        review_score = #{reviewScore,jdbcType=INTEGER},
+      </if>
+      <if test="reviewComments != null" >
+        review_comments = #{reviewComments,jdbcType=VARCHAR},
+      </if>
+      <if test="replyId != null" >
+        reply_id = #{replyId,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewType != null" >
+        review_type = #{reviewType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where s_id = #{sId,jdbcType=VARCHAR}
+      and member_t_id = #{memberTId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ysj.core.po.Review" >
+    update review
+    set review_score = #{reviewScore,jdbcType=INTEGER},
+      review_comments = #{reviewComments,jdbcType=VARCHAR},
+      reply_id = #{replyId,jdbcType=VARCHAR},
+      review_type = #{reviewType,jdbcType=VARCHAR}
+    where s_id = #{sId,jdbcType=VARCHAR}
+      and member_t_id = #{memberTId,jdbcType=VARCHAR}
+  </update>
+   <select id="findBysNameAndMemberId" resultMap="B2">
+  select * from reviewscore where member_t_id = #{memberTId} and s_name like "%"#{sName}"%" and agree = '通过' order by batch
+  </select>
+  <select id="findByMemberId" resultMap="B2">
+  select * from reviewscore where member_t_id = #{memberTId} and agree = '通过' order by batch
+  </select>
+  <update id="update" parameterType="com.ysj.core.po.Review">
+  update review 
+  set review_score = #{reviewScore},
+    review_comments = #{reviewComments}
+    where s_id = #{sId} and member_t_id = #{memberTId}
+  </update>
+  <select id="findByReplyLeader" resultMap="B2">
+  select * from reviewscore where reply_leader = #{replyLeader} and agree = '通过'
+  </select>
+  <select id="findReviewByRLer" resultMap="B2">
+  select reply_id,s_id,s_name,titl_id,titl_name,f_id,f_name,reply_leader,t_id,t_name,batch,GROUP_CONCAT(member_t_name) as member_t_name2,GROUP_CONCAT(member_t_id) as member_t_id2,GROUP_CONCAT(review_score) as review_score2,GROUP_CONCAT(reply_score) as reply_score2 from reviewscore where agree = '通过' and reply_leader = #{replyLeader} GROUP BY s_id ORDER BY batch
+  </select>
+  <select id="findReviewByRLer1" resultMap="B2">
+  select reply_id,s_id,s_name,titl_id,titl_name,f_id,f_name,reply_leader,t_id,t_name,batch,GROUP_CONCAT(member_t_name) as member_t_name2,GROUP_CONCAT(member_t_id) as member_t_id2,GROUP_CONCAT(review_score) as review_score2,GROUP_CONCAT(reply_score) as reply_score2 from reviewscore where agree = '通过' and reply_leader = #{replyLeader} and s_name like "%"#{sName}"%" GROUP BY s_id ORDER BY batch
+  </select>
+  <select id="findBySId" resultMap="B2">
+  select * from reviewscore where s_id = #{sId} and agree = '通过' order by review_type
+  </select>
+</mapper>
