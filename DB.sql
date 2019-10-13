@@ -97,7 +97,6 @@ CREATE TABLE `comments` (
 -- Records of comments
 -- ----------------------------
 
-
 -- ----------------------------
 -- Table structure for `mid_check`
 -- ----------------------------
@@ -118,7 +117,6 @@ CREATE TABLE `mid_check` (
 -- Records of mid_check
 -- ----------------------------
 
-
 -- ----------------------------
 -- Table structure for `myfile`
 -- ----------------------------
@@ -135,7 +133,6 @@ CREATE TABLE `myfile` (
 -- ----------------------------
 -- Records of myfile
 -- ----------------------------
-
 
 -- ----------------------------
 -- Table structure for `open_report`
@@ -157,7 +154,6 @@ CREATE TABLE `open_report` (
 -- Records of open_report
 -- ----------------------------
 
-
 -- ----------------------------
 -- Table structure for `proj_book`
 -- ----------------------------
@@ -177,7 +173,6 @@ CREATE TABLE `proj_book` (
 -- ----------------------------
 -- Records of proj_book
 -- ----------------------------
-
 
 -- ----------------------------
 -- Table structure for `reply_group`
@@ -201,7 +196,6 @@ CREATE TABLE `reply_group` (
 -- Records of reply_group
 -- ----------------------------
 
-
 -- ----------------------------
 -- Table structure for `review`
 -- ----------------------------
@@ -224,7 +218,6 @@ CREATE TABLE `review` (
 -- ----------------------------
 -- Records of review
 -- ----------------------------
-
 
 -- ----------------------------
 -- Table structure for `score_proportion`
@@ -264,7 +257,6 @@ CREATE TABLE `select_title` (
 -- ----------------------------
 -- Records of select_title
 -- ----------------------------
-
 
 -- ----------------------------
 -- Table structure for `student`
@@ -368,7 +360,6 @@ CREATE TABLE `thesis` (
 -- Records of thesis
 -- ----------------------------
 
-
 -- ----------------------------
 -- Table structure for `thesis_attachment`
 -- ----------------------------
@@ -410,7 +401,6 @@ CREATE TABLE `title` (
 -- ----------------------------
 -- Records of title
 -- ----------------------------
-
 
 -- ----------------------------
 -- View structure for `midcheckinfo`
