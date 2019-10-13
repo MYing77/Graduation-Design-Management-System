@@ -96,29 +96,7 @@ CREATE TABLE `comments` (
 -- ----------------------------
 -- Records of comments
 -- ----------------------------
-INSERT INTO `comments` VALUES ('55', '', '20080040', '94', '201535020636', '2019-05-21 02:25:23');
-INSERT INTO `comments` VALUES ('56', '', '20080040', '95', '201535020636', '2019-05-21 02:25:58');
-INSERT INTO `comments` VALUES ('57', '', '20080040', '96', '201535020636', '2019-05-21 02:26:18');
-INSERT INTO `comments` VALUES ('58', '', '20080040', '97', '201535020636', '2019-05-21 02:26:35');
-INSERT INTO `comments` VALUES ('59', '', '20080040', '98', '201535020616', '2019-05-21 02:28:10');
-INSERT INTO `comments` VALUES ('60', '', '20080040', '99', '201535020616', '2019-05-21 02:28:23');
-INSERT INTO `comments` VALUES ('61', '大问题，回去改', '20080040', '100', '201535020616', '2019-05-21 02:28:49');
-INSERT INTO `comments` VALUES ('62', '', '20080040', '101', '201535020616', '2019-05-21 02:29:03');
-INSERT INTO `comments` VALUES ('63', '', '20080040', '102', '201535020616', '2019-05-21 02:29:19');
-INSERT INTO `comments` VALUES ('64', '', '20080040', '103', '201535020616', '2019-05-21 02:29:34');
-INSERT INTO `comments` VALUES ('65', '', '20080040', '104', '201535020111', '2019-05-21 02:30:22');
-INSERT INTO `comments` VALUES ('66', '', '20080040', '105', '201535020111', '2019-05-21 02:30:37');
-INSERT INTO `comments` VALUES ('67', '', '20080040', '106', '201535020111', '2019-05-21 02:31:01');
-INSERT INTO `comments` VALUES ('68', '', '20080040', '107', '201535020111', '2019-05-21 02:31:13');
-INSERT INTO `comments` VALUES ('69', '', '20080044', '108', '201535020601', '2019-05-21 02:34:28');
-INSERT INTO `comments` VALUES ('70', '', '20080044', '109', '201535020601', '2019-05-21 02:34:42');
-INSERT INTO `comments` VALUES ('71', '', '20080044', '110', '201535020601', '2019-05-21 02:34:58');
-INSERT INTO `comments` VALUES ('72', '', '20080044', '111', '201535020601', '2019-05-21 02:35:15');
-INSERT INTO `comments` VALUES ('73', '', '20080044', '112', '201535020505', '2019-05-21 02:35:43');
-INSERT INTO `comments` VALUES ('74', '', '20080044', '113', '201535020505', '2019-05-21 02:36:08');
-INSERT INTO `comments` VALUES ('75', '', '20080044', '114', '201535020505', '2019-05-21 02:36:29');
-INSERT INTO `comments` VALUES ('76', '', '20080044', '115', '201535020505', '2019-05-21 02:36:44');
-INSERT INTO `comments` VALUES ('77', '', '20080040', '116', '201535020502', '2019-05-21 02:42:58');
+
 
 -- ----------------------------
 -- Table structure for `mid_check`
@@ -139,11 +117,7 @@ CREATE TABLE `mid_check` (
 -- ----------------------------
 -- Records of mid_check
 -- ----------------------------
-INSERT INTO `mid_check` VALUES ('6', '201535020636', '96', '通过');
-INSERT INTO `mid_check` VALUES ('7', '201535020616', '102', '通过');
-INSERT INTO `mid_check` VALUES ('8', '201535020111', '106', '通过');
-INSERT INTO `mid_check` VALUES ('9', '201535020601', '110', '通过');
-INSERT INTO `mid_check` VALUES ('10', '201535020505', '114', '通过');
+
 
 -- ----------------------------
 -- Table structure for `myfile`
@@ -161,29 +135,7 @@ CREATE TABLE `myfile` (
 -- ----------------------------
 -- Records of myfile
 -- ----------------------------
-INSERT INTO `myfile` VALUES ('94', '201535020636尹少俊任务书.doc', 'D:\\eclipse-workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Graduation-Design-Management-System\\upload\\20080040\\201535020636尹少俊任务书.doc', '2019-05-21 02:25:13', '任务书');
-INSERT INTO `myfile` VALUES ('95', '201535020636尹少俊开题报告.doc', 'D:\\eclipse-workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Graduation-Design-Management-System\\upload\\20080040\\201535020636尹少俊开题报告.doc', '2019-05-21 02:25:41', '开题报告');
-INSERT INTO `myfile` VALUES ('96', '201535020636尹少俊中期检查.doc', 'D:\\eclipse-workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Graduation-Design-Management-System\\upload\\20080040\\201535020636尹少俊中期检查.doc', '2019-05-21 02:26:10', '中期检查');
-INSERT INTO `myfile` VALUES ('97', '201535020636尹少俊论文.doc', 'D:\\eclipse-workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Graduation-Design-Management-System\\upload\\20080040\\201535020636尹少俊论文.doc', '2019-05-21 02:26:26', '论文');
-INSERT INTO `myfile` VALUES ('98', '201535020616梁斌任务书.doc', 'D:\\eclipse-workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Graduation-Design-Management-System\\upload\\20080040\\201535020616梁斌任务书.doc', '2019-05-21 02:28:04', '任务书');
-INSERT INTO `myfile` VALUES ('99', '201535020616梁斌任务书(1).doc', 'D:\\eclipse-workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Graduation-Design-Management-System\\upload\\20080040\\201535020616梁斌任务书(1).doc', '2019-05-21 02:28:18', '任务书');
-INSERT INTO `myfile` VALUES ('100', '201535020616梁斌开题报告.doc', 'D:\\eclipse-workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Graduation-Design-Management-System\\upload\\20080040\\201535020616梁斌开题报告.doc', '2019-05-21 02:28:32', '开题报告');
-INSERT INTO `myfile` VALUES ('101', '201535020616梁斌开题报告(1).doc', 'D:\\eclipse-workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Graduation-Design-Management-System\\upload\\20080040\\201535020616梁斌开题报告(1).doc', '2019-05-21 02:28:56', '开题报告');
-INSERT INTO `myfile` VALUES ('102', '201535020616梁斌中期检查.doc', 'D:\\eclipse-workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Graduation-Design-Management-System\\upload\\20080040\\201535020616梁斌中期检查.doc', '2019-05-21 02:29:09', '中期检查');
-INSERT INTO `myfile` VALUES ('103', '201535020616梁斌论文.doc', 'D:\\eclipse-workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Graduation-Design-Management-System\\upload\\20080040\\201535020616梁斌论文.doc', '2019-05-21 02:29:27', '论文');
-INSERT INTO `myfile` VALUES ('104', '201535020111蔡徐坤同学任务书.doc', 'D:\\eclipse-workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Graduation-Design-Management-System\\upload\\20080040\\201535020111蔡徐坤同学任务书.doc', '2019-05-21 02:30:14', '任务书');
-INSERT INTO `myfile` VALUES ('105', '201535020111蔡徐坤同学开题报告.doc', 'D:\\eclipse-workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Graduation-Design-Management-System\\upload\\20080040\\201535020111蔡徐坤同学开题报告.doc', '2019-05-21 02:30:29', '开题报告');
-INSERT INTO `myfile` VALUES ('106', '201535020111蔡徐坤同学中期检查.doc', 'D:\\eclipse-workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Graduation-Design-Management-System\\upload\\20080040\\201535020111蔡徐坤同学中期检查.doc', '2019-05-21 02:30:55', '中期检查');
-INSERT INTO `myfile` VALUES ('107', '201535020111蔡徐坤同学论文.doc', 'D:\\eclipse-workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Graduation-Design-Management-System\\upload\\20080040\\201535020111蔡徐坤同学论文.doc', '2019-05-21 02:31:06', '论文');
-INSERT INTO `myfile` VALUES ('108', '201535020601蔡柏轩啊任务书.doc', 'D:\\eclipse-workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Graduation-Design-Management-System\\upload\\20080044\\201535020601蔡柏轩啊任务书.doc', '2019-05-21 02:34:20', '任务书');
-INSERT INTO `myfile` VALUES ('109', '201535020601蔡柏轩啊开题报告.doc', 'D:\\eclipse-workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Graduation-Design-Management-System\\upload\\20080044\\201535020601蔡柏轩啊开题报告.doc', '2019-05-21 02:34:36', '开题报告');
-INSERT INTO `myfile` VALUES ('110', '201535020601蔡柏轩啊中期检查.doc', 'D:\\eclipse-workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Graduation-Design-Management-System\\upload\\20080044\\201535020601蔡柏轩啊中期检查.doc', '2019-05-21 02:34:50', '中期检查');
-INSERT INTO `myfile` VALUES ('111', '201535020601蔡柏轩啊论文.doc', 'D:\\eclipse-workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Graduation-Design-Management-System\\upload\\20080044\\201535020601蔡柏轩啊论文.doc', '2019-05-21 02:35:08', '论文');
-INSERT INTO `myfile` VALUES ('112', '201535020505张小明任务书.doc', 'D:\\eclipse-workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Graduation-Design-Management-System\\upload\\20080044\\201535020505张小明任务书.doc', '2019-05-21 02:35:33', '任务书');
-INSERT INTO `myfile` VALUES ('113', '201535020505张小明开题报告.doc', 'D:\\eclipse-workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Graduation-Design-Management-System\\upload\\20080044\\201535020505张小明开题报告.doc', '2019-05-21 02:35:56', '开题报告');
-INSERT INTO `myfile` VALUES ('114', '201535020505张小明中期检查.doc', 'D:\\eclipse-workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Graduation-Design-Management-System\\upload\\20080044\\201535020505张小明中期检查.doc', '2019-05-21 02:36:16', '中期检查');
-INSERT INTO `myfile` VALUES ('115', '201535020505张小明论文.doc', 'D:\\eclipse-workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Graduation-Design-Management-System\\upload\\20080044\\201535020505张小明论文.doc', '2019-05-21 02:36:37', '论文');
-INSERT INTO `myfile` VALUES ('116', '201535020502宋志杨任务书.doc', 'D:\\eclipse-workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Graduation-Design-Management-System\\upload\\20080040\\201535020502宋志杨任务书.doc', '2019-05-21 02:42:38', '任务书');
+
 
 -- ----------------------------
 -- Table structure for `open_report`
@@ -204,12 +156,7 @@ CREATE TABLE `open_report` (
 -- ----------------------------
 -- Records of open_report
 -- ----------------------------
-INSERT INTO `open_report` VALUES ('6', '95', '201535020636', '通过');
-INSERT INTO `open_report` VALUES ('7', '100', '201535020616', '不通过');
-INSERT INTO `open_report` VALUES ('8', '101', '201535020616', '通过');
-INSERT INTO `open_report` VALUES ('9', '105', '201535020111', '通过');
-INSERT INTO `open_report` VALUES ('10', '109', '201535020601', '通过');
-INSERT INTO `open_report` VALUES ('11', '113', '201535020505', '通过');
+
 
 -- ----------------------------
 -- Table structure for `proj_book`
@@ -230,13 +177,7 @@ CREATE TABLE `proj_book` (
 -- ----------------------------
 -- Records of proj_book
 -- ----------------------------
-INSERT INTO `proj_book` VALUES ('37', '94', '201535020636', '通过');
-INSERT INTO `proj_book` VALUES ('38', '98', '201535020616', '不通过');
-INSERT INTO `proj_book` VALUES ('39', '99', '201535020616', '通过');
-INSERT INTO `proj_book` VALUES ('40', '104', '201535020111', '通过');
-INSERT INTO `proj_book` VALUES ('41', '108', '201535020601', '通过');
-INSERT INTO `proj_book` VALUES ('42', '112', '201535020505', '通过');
-INSERT INTO `proj_book` VALUES ('43', '116', '201535020502', '通过');
+
 
 -- ----------------------------
 -- Table structure for `reply_group`
@@ -259,7 +200,7 @@ CREATE TABLE `reply_group` (
 -- ----------------------------
 -- Records of reply_group
 -- ----------------------------
-INSERT INTO `reply_group` VALUES ('1', '20080045 蔡徐坤', '2000 评阅教师0,2001 评阅教师1', '3B310', '2019-05-16 14:30:00', '2', '20080040 张三三,20080044 王五', '20080045');
+
 
 -- ----------------------------
 -- Table structure for `review`
@@ -283,21 +224,7 @@ CREATE TABLE `review` (
 -- ----------------------------
 -- Records of review
 -- ----------------------------
-INSERT INTO `review` VALUES ('201535020111', '2000', '0', null, '1', '评阅教师评分');
-INSERT INTO `review` VALUES ('201535020111', '2001', '0', null, '1', '评阅教师评分');
-INSERT INTO `review` VALUES ('201535020111', '20080045', '0', null, '1', '答辩组长评分');
-INSERT INTO `review` VALUES ('201535020505', '2000', '0', null, '1', '评阅教师评分');
-INSERT INTO `review` VALUES ('201535020505', '2001', '0', null, '1', '评阅教师评分');
-INSERT INTO `review` VALUES ('201535020505', '20080045', '0', null, '1', '答辩组长评分');
-INSERT INTO `review` VALUES ('201535020601', '2000', '0', null, '1', '评阅教师评分');
-INSERT INTO `review` VALUES ('201535020601', '2001', '0', null, '1', '评阅教师评分');
-INSERT INTO `review` VALUES ('201535020601', '20080045', '0', null, '1', '答辩组长评分');
-INSERT INTO `review` VALUES ('201535020616', '2000', '0', null, '1', '评阅教师评分');
-INSERT INTO `review` VALUES ('201535020616', '2001', '0', null, '1', '评阅教师评分');
-INSERT INTO `review` VALUES ('201535020616', '20080045', '0', null, '1', '答辩组长评分');
-INSERT INTO `review` VALUES ('201535020636', '2000', '65', '系统基本功能实现，流程较完整', '1', '评阅教师评分');
-INSERT INTO `review` VALUES ('201535020636', '2001', '65', '系统尚可，数据库设计有不合理的地方', '1', '评阅教师评分');
-INSERT INTO `review` VALUES ('201535020636', '20080045', '70', '系统还可以，论文要改', '1', '答辩组长评分');
+
 
 -- ----------------------------
 -- Table structure for `score_proportion`
@@ -337,12 +264,7 @@ CREATE TABLE `select_title` (
 -- ----------------------------
 -- Records of select_title
 -- ----------------------------
-INSERT INTO `select_title` VALUES ('201535020111', '2', '66', '还行', null, null, '同意');
-INSERT INTO `select_title` VALUES ('201535020502', '34', '0', '', null, null, '同意');
-INSERT INTO `select_title` VALUES ('201535020505', '36', '0', null, null, null, '同意');
-INSERT INTO `select_title` VALUES ('201535020601', '9', '66', '这是指导教师评语', null, null, '同意');
-INSERT INTO `select_title` VALUES ('201535020616', '35', '60', '测试指导教师评语', null, null, '同意');
-INSERT INTO `select_title` VALUES ('201535020636', '5', '60', '测试指导教师成绩', '34', null, '同意');
+
 
 -- ----------------------------
 -- Table structure for `student`
@@ -445,11 +367,7 @@ CREATE TABLE `thesis` (
 -- ----------------------------
 -- Records of thesis
 -- ----------------------------
-INSERT INTO `thesis` VALUES ('8', '201535020636', '5', '97', '通过');
-INSERT INTO `thesis` VALUES ('9', '201535020616', '35', '103', '通过');
-INSERT INTO `thesis` VALUES ('10', '201535020111', '2', '107', '通过');
-INSERT INTO `thesis` VALUES ('11', '201535020601', '9', '111', '通过');
-INSERT INTO `thesis` VALUES ('12', '201535020505', '36', '115', '通过');
+
 
 -- ----------------------------
 -- Table structure for `thesis_attachment`
@@ -492,25 +410,7 @@ CREATE TABLE `title` (
 -- ----------------------------
 -- Records of title
 -- ----------------------------
-INSERT INTO `title` VALUES ('1', '基于微信的高校社团管理系统的设计与实现', '20080040', '教师科研', '工程设计类', '描述1', '已审批', '未被选择', '软件工程');
-INSERT INTO `title` VALUES ('2', '在线订餐APP的设计与实现', '20080040', '其他', '其他', '描述2', '已审批', '已被选择', '软件工程');
-INSERT INTO `title` VALUES ('3', '小猪班纳仓库原料管理系统的设计与开发', '20080040', '其他', '其他', '描述3', '已审批', '未被选择', '软件工程');
-INSERT INTO `title` VALUES ('5', 'PCB生产信息管理系统的设计与实现', '20080040', '其他', '其他', '描述5', '已审批', '已被选择', '软件工程');
-INSERT INTO `title` VALUES ('6', '远梦床垫物料管理系统的设计与实现', '20080040', '其他', '其他', '描述6', '已审批', '未被选择', '软件工程');
-INSERT INTO `title` VALUES ('7', '城院校园超市在线销售系统的设计与实现', '20080040', '其他', '其他', '无描述', '已审批', '未被选择', '软件工程');
-INSERT INTO `title` VALUES ('8', '商英课题1', '20080041', '其他', '其他', '描述描述', '已审批', '未被选择', '商务英语');
-INSERT INTO `title` VALUES ('9', '汽车微信管理系统', '20080044', '其它', '其它', '就是汽车维修', '已审批', '已被选择', '软件工程');
-INSERT INTO `title` VALUES ('10', '城院手机二手商城', '20080040', '其他', '其他', '描述是啥', '审批不通过', '未被选择', '软件工程');
-INSERT INTO `title` VALUES ('11', '什么啊', '20080040', '其他', '其他', '没描述', '审批不通过', '未被选择', '软件工程');
-INSERT INTO `title` VALUES ('12', '测试', '20080040', '社会生产实践', '理论研究类', '测试1', '已审批', '未被选择', '软件工程');
-INSERT INTO `title` VALUES ('16', '测试11', '20080040', '教学', '应用(试验)研究类', '测试', '已审批', '未被选择', '物联网工程');
-INSERT INTO `title` VALUES ('17', '张永财的课题1', '2008888', '社会生产实践', '理论研究类', '描述', '已审批', '未被选择', '软件工程');
-INSERT INTO `title` VALUES ('19', '测试11111', '20080040', '教师科研', '工程设计类', '哒哒哒哒', '待审批', '未被选择', '电子信息工程');
-INSERT INTO `title` VALUES ('32', '1', '20080040', '社会生产实践', '理论研究类', '1', '审批不通过', '未被选择', '软件工程');
-INSERT INTO `title` VALUES ('33', '2222', '20080040', '社会生产实践', '理论研究类', '2222', '已审批', '未被选择', '软件工程');
-INSERT INTO `title` VALUES ('34', '测试课题1122', '20080040', '其他', '其他', '这是课题描述', '已审批', '已被选择', '软件工程');
-INSERT INTO `title` VALUES ('35', '这是一个测试课题', '20080040', '教师科研', '其他', '测试专用！', '已审批', '已被选择', '软件工程');
-INSERT INTO `title` VALUES ('36', '测试新课题', '20080044', '社会生产实践', '应用(试验)研究类', '这是课题描述', '已审批', '已被选择', '软件工程');
+
 
 -- ----------------------------
 -- View structure for `midcheckinfo`
